@@ -7,13 +7,22 @@ deck.addEventListener('click', event => {
   const clickTarget = event.target;
   if (clickTarget.classList.contains('card')){
     toggleCard(clickTarget);
+    addToggleCard(clickTarget);
+    if (toggledCards.length === 2) {
+      console.log('2 cards!');
+    }
   }
 });
+
  function toggleCard(clickTarget) {
    clickTarget.classList.toggle('open');
    clickTarget.classList.toggle('show');
  }
-
+ let toggledCards = [];
+function addToggleCard(clickTarget) {
+  toggledCards.push(clickTarget);
+  console.log(toggledCards);
+}
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below

@@ -6,11 +6,14 @@ const deck =document.querySelector('.deck');
 deck.addEventListener('click', event => {
   const clickTarget = event.target;
   if (clickTarget.classList.contains('card')){
-    clickTarget.classList.toggle('open');
-    clickTarget.classList.toggle('show');
-    console.log("I'm a card!");
+    toggleCard(clickTarget);
   }
 });
+ function toggleCard(clickTarget) {
+   clickTarget.classList.toggle('open');
+   clickTarget.classList.toggle('show');
+ }
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below

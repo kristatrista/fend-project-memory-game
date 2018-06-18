@@ -1,7 +1,14 @@
 /*
  * Create a list that holds all of your cards
  */
+const cards =document.querySelectorAll('.card');
+console.log(cards);
 
+for (card of cards){
+  card.addEventListener('click', () =>{
+    console.log("Hello, I'm a card!")
+  });
+}
 
 /*
  * Display the cards on the page

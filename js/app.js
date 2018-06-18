@@ -1,15 +1,13 @@
 /*
  * Create a list that holds all of your cards
  */
-const cards =document.querySelectorAll('.card');
-console.log(cards);
 
-for (card of cards){
-  card.addEventListener('click', () =>{
-    console.log("Hello, I'm a card!")
-  });
-}
-
+deck.addEventListener('click', event => {
+  const clickTarget = event.target;
+  if (clickTarget.classList.contains('card')){
+    console.log("I'm a card!");
+  }
+});
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below

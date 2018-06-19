@@ -11,18 +11,34 @@ deck.addEventListener('click', event => {
     if (toggledCards.length === 2) {
       console.log('2 cards!');
     }
+    return checkForMatch();
   }
 });
 
- function toggleCard(clickTarget) {
-   clickTarget.classList.toggle('open');
-   clickTarget.classList.toggle('show');
+ function toggleCard(card) {
+   card.classList.toggle('open');
+   card.classList.toggle('show');
  }
+
  let toggledCards = [];
-function addToggleCard(clickTarget) {
+
+ function addToggleCard(clickTarget) {
   toggledCards.push(clickTarget);
   console.log(toggledCards);
+
 }
+
+function checkForMatch() {
+  if ( toggledCards[0].firstElementChild.className === toggledCards[1].firstElementChild.className ) {
+    console.log('I match!');
+  } else {
+    console.log('Not a match');
+    toggledCards = [];
+    toggleCard(toggledCards[0]);
+    toggleCard(toggledCards[1]);
+  }
+}
+checkForMatch();
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below

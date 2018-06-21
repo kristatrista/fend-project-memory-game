@@ -69,9 +69,10 @@ function addToggleCard(clickTarget){
 
  function shuffleTheDeck (){
    const cardsToShuffle = Array.from(document.querySelectorAll('.deck li'));
-   console.log('Cards to Shuffle',cardsToShuffle);
    const shuffledCards = shuffle(cardsToShuffle);
-   console.log('Shuffled Cards', shuffledCards);
+   for (card of shuffledCards) {
+     deck.appendChild(card);
+   }
  }
  shuffleTheDeck();
 

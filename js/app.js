@@ -1,44 +1,61 @@
 /*
  * Create a list that holds all of your cards
  */
-const deck =document.querySelector('.deck');
+const cards = document.querySelectorAll('.card');
+console.log(cards);
 
-deck.addEventListener('click', event => {
+//select deck of cards as target
+const deck = document.querySelector('.deck');
+
+//add event listener to deck, log "", toggle open
+deck.addEventListener('click',event =>{
   const clickTarget = event.target;
-  if (clickTarget.classList.contains('card')){
+  if (clickTarget.classList.contains('card') && toggledCards.length < 2){
+    console.log('Im a card');
     toggleCard(clickTarget);
     addToggleCard(clickTarget);
-    if (toggledCards.length === 2) {
-      console.log('2 cards!');
-    }
-    return checkForMatch();
+if (toggledCards.length ===2 ){
+  checkForMatch();
+  console.log('2 cards');
+}
+
   }
 });
 
- function toggleCard(card) {
-   card.classList.toggle('open');
-   card.classList.toggle('show');
- }
-
- let toggledCards = [];
-
- function addToggleCard(clickTarget) {
+//toggle cards in seperate funtion open show
+function toggleCard (clickTarget) {
+  clickTarget.classList.toggle('open');
+  clickTarget.classList.toggle('show');
+}
+//create list to hold clicked cards in global scope
+let toggledCards = [];
+//create funtion to push clicked cards to new array
+function addToggleCard(clickTarget){
   toggledCards.push(clickTarget);
   console.log(toggledCards);
 
-}
 
-function checkForMatch() {
-  if ( toggledCards[0].firstElementChild.className === toggledCards[1].firstElementChild.className ) {
-    console.log('I match!');
-  } else {
-    console.log('Not a match');
-    toggledCards = [];
-    toggleCard(toggledCards[0]);
-    toggleCard(toggledCards[1]);
-  }
 }
-checkForMatch();
+ //create a match funtion
+
+ function checkForMatch(){
+   if (toggledCards[0].firstElementChild.className === toggledCards[1].firstElementChild.className){
+     console.log('Match');
+     toggledCards[0].classList.toggle('match');
+     toggledCards[1].classList.toggle('match');
+     toggledCards = [];
+
+   }else{
+     console.log('not a match');
+     toggleCard(toggledCards[0]);
+     toggleCard(toggledCards[1]);
+     toggledCards = [];
+
+
+   }
+ }
+
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below

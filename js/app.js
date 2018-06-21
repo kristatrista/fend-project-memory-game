@@ -46,10 +46,13 @@ function addToggleCard(clickTarget){
      toggledCards = [];
 
    }else{
-     console.log('not a match');
-     toggleCard(toggledCards[0]);
-     toggleCard(toggledCards[1]);
-     toggledCards = [];
+     setTimeout(()=> {
+       console.log('not a match');
+       toggleCard(toggledCards[0]);
+       toggleCard(toggledCards[1]);
+       toggledCards = [];
+     }, 1000);
+
 
 
    }

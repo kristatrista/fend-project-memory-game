@@ -25,6 +25,7 @@ deck.addEventListener('click',event =>{
 if (toggledCards.length ===2 ){
   checkForMatch();
   addMove();
+  checkScore();
   console.log('2 cards');
 }
 
@@ -87,6 +88,23 @@ function addMove(){
   movesText.innerHTML = moves;
 
 }
+
+//stars funciton
+
+function checkScore(){
+
+  if (moves === 16 || moves === 24){
+    removeStar();
+  }
+}
+
+function removeStar(){
+  starList = document.querySelectorAll('.star li');
+  for (star of starList){
+    star.style.display='none';
+  }
+}
+removeStar();
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below

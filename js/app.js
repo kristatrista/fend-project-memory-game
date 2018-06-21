@@ -10,7 +10,15 @@ const deck = document.querySelector('.deck');
 //add event listener to deck, log "", toggle open
 deck.addEventListener('click',event =>{
   const clickTarget = event.target;
-  if (clickTarget.classList.contains('card') && toggledCards.length < 2){
+
+  function isClickValid(clickTarget){
+  return (clickTarget.classList.contains('card') &&
+  !clickTarget.classList.contains('match')
+  && toggledCards.length < 2 &&
+  !toggledCards.includes(clickTarget));
+}
+
+  if (isClickValid){
     console.log('Im a card');
     toggleCard(clickTarget);
     addToggleCard(clickTarget);

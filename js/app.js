@@ -65,7 +65,15 @@ function addToggleCard(clickTarget){
 
    }
  }
+ //shuffle the deck
 
+ function shuffleTheDeck (){
+   const cardsToShuffle = Array.from(document.querySelectorAll('.deck li'));
+   console.log('Cards to Shuffle',cardsToShuffle);
+   const shuffledCards = shuffle(cardsToShuffle);
+   console.log('Shuffled Cards', shuffledCards);
+ }
+ shuffleTheDeck();
 
 /*
  * Display the cards on the page

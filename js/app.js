@@ -93,18 +93,15 @@ function addMove(){
 
 function checkScore(){
 
-  if (moves === 16 || moves === 24){
+  if (moves === 3 || moves === 6 || moves === 8){
     removeStar();
   }
 }
 
 function removeStar(){
-  starList = document.querySelectorAll('.star li');
-  for (star of starList){
-    star.style.display='none';
-  }
+  starList = document.querySelectorAll('.fa-star');
+  starList[0].classList.remove('fa-star');
 }
-removeStar();
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below

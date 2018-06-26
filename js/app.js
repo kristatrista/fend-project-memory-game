@@ -93,7 +93,7 @@ function addMove(){
 
 function checkScore(){
 
-  if (moves === 3 || moves === 6 || moves === 8){
+  if (moves === 8 || moves === 12 || moves === 16){
     removeStar();
   }
 }

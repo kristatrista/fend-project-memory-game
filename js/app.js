@@ -74,9 +74,6 @@ function addToggleCard(clickTarget){
        toggleCard(toggledCards[1]);
        toggledCards = [];
      }, 700);
-
-
-
    }
  }
  //shuffle the deck
@@ -92,32 +89,27 @@ function addToggleCard(clickTarget){
 
 //move counter
 
-
-
 function addMove(){
   moves ++;
   const movesText = document.querySelector('.moves');
   movesText.innerHTML = moves;
-
 }
 
 //stars funciton
 
 function checkScore(){
-
   if (moves === 8 || moves === 12 || moves === 16){
     removeStar();
   }
 }
+
 starList = document.querySelectorAll('.fa-star');
 function removeStar(){
-
   starList[0].classList.remove('fa-star');
 }
 //clock
 
 function startClock(){
-
   let clockId = setInterval(() =>{
     time ++
     const clock = document.querySelector('#clock');
@@ -126,46 +118,57 @@ function startClock(){
     if (seconds < 10) {
       clock.innerHTML = minutes + ':0' + seconds;
     } else{
-      clock.innerHTML = minutes +':' + seconds;
+      clock.innerHTML = minutes + ':' + seconds;
     }
     console.log( time + ' seconds have passed');
   }, 1000);
-
 }
+
 function stopClock(){
   clearInterval(clockId);
 }
 
 //modal
 
-// Get the modal
 var modal = document.querySelector('.modal');
-
-// Get the <span> element that closes the modal
 var span = document.querySelector(".close");
-
-// When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
+// When the user clicks anywhere outside of the modal, close it/optional
 window.onclick = function(event) {
     if (event.target === modal) {
         modal.style.display = "none";
     }
 }
+
+document.querySelector(".replayButton").addEventListener('click',()=>{
+  console.log("replay");
+  toggleModal();
+});
+
+ function toggleModal(){
+   modal.classList.toggle("hidden");
+   console.log('hey restart me');
+ }
+
+
 //append stats to modal body
 
 function youWon(){
-  const clockTime = document.querySelector(".clock").innerHTML;
-  const timeStats = document.querySelector(".modalTime");
+  const modalTime = document.querySelector(".modalTime");
+  const clockTime = document.querySelector("#clock").innerHTML;
   const starStats = document.querySelector(".modalStars");
   const movesStats = document.querySelector(".modalMoves");
-  const stars = getStarts();
+//  const stars = getStars();
   //when all cards are matched pop up window with stats
-  starStats.innerHTML= "Stars: "  + starList;
+  starStats.innerHTML= "Stars = "  + starList.length;
+  modalTime.innerHTML= "Time = " + clockTime;
+  movesStats.innerHTML= "Moves = " + moves;
+
 }
+youWon();
 /*
 
 function displayTime(){

@@ -1,6 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
+
  //globals
 let moves = 0;
 clockOff =true;
@@ -8,12 +9,20 @@ let time = 0;
 let clockId;
 const cards = document.querySelectorAll('.card');
 console.log(cards);
+let matched = 0;
+const totalPairs = 8;
+
+
 //create list to hold clicked cards in global scope
+
 let toggledCards = [];
+
 //select deck of cards as target
+
 const deck = document.querySelector('.deck');
 
 //add event listener to deck, log "", toggle open
+
 deck.addEventListener('click',event =>{
   const clickTarget = event.target;
   if (isClickValid(clickTarget)){
@@ -46,15 +55,18 @@ if (toggledCards.length ===2 ){
 });
 
 //toggle cards in seperate funtion open show
+
 function toggleCard (clickTarget) {
   clickTarget.classList.toggle('open');
   clickTarget.classList.toggle('show');
 }
 
 //create funtion to push clicked cards to new array
+
 function addToggleCard(clickTarget){
   toggledCards.push(clickTarget);
   console.log(toggledCards);
+
 
 
 }
@@ -63,9 +75,11 @@ function addToggleCard(clickTarget){
  function checkForMatch(){
    if (toggledCards[0].firstElementChild.className === toggledCards[1].firstElementChild.className){
      console.log('Match');
+     console.log(matched.length +" matched");
      toggledCards[0].classList.toggle('match');
      toggledCards[1].classList.toggle('match');
      toggledCards = [];
+     matched ++;
 
    }else{
      setTimeout(()=> {
@@ -101,6 +115,7 @@ function checkScore(){
   if (moves === 8 || moves === 12 || moves === 16){
     removeStar();
   }
+
 }
 
 starList = document.querySelectorAll('.fa-star');
@@ -120,7 +135,7 @@ function startClock(){
     } else{
       clock.innerHTML = minutes + ':' + seconds;
     }
-    console.log( time + ' seconds have passed');
+
   }, 1000);
 }
 
@@ -161,14 +176,25 @@ function youWon(){
   const clockTime = document.querySelector("#clock").innerHTML;
   const starStats = document.querySelector(".modalStars");
   const movesStats = document.querySelector(".modalMoves");
+
 //  const stars = getStars();
   //when all cards are matched pop up window with stats
+
   starStats.innerHTML= "Stars = "  + starList.length;
   modalTime.innerHTML= "Time = " + clockTime;
   movesStats.innerHTML= "Moves = " + moves;
 
 }
 youWon();
+
+//reset Game
+//game over
+function gameOver(){
+  stopClock();
+  toggleModal();
+  youWon();
+
+}
 /*
 
 function displayTime(){

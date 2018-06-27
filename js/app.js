@@ -1,15 +1,22 @@
 /*
  * Create a list that holds all of your cards
  */
+ let time = 0;
 const cards = document.querySelectorAll('.card');
 console.log(cards);
 
 //select deck of cards as target
 const deck = document.querySelector('.deck');
-
 //add event listener to deck, log "", toggle open
 deck.addEventListener('click',event =>{
   const clickTarget = event.target;
+  if (isClickValid(clickTarget)){
+  if(clockOff) {
+    startClock();
+    clockOff= false;
+
+  }
+}
 
   function isClickValid(clickTarget){
   return (clickTarget.classList.contains('card') &&
@@ -102,6 +109,35 @@ function removeStar(){
   starList = document.querySelectorAll('.fa-star');
   starList[0].classList.remove('fa-star');
 }
+//clock
+//clock
+clockOff =true;
+;
+function startClock(){
+
+  let clockId = setInterval(() =>{
+    time++
+    console.log('one second had passed');
+  }, 1000);
+  function displayTime(){
+    const clock = document.querySelector('.clock');
+    console.log(clock);
+    clock.innerHTML = time;
+  }
+}
+
+
+
+/*
+//restart Game
+function(){
+  eventlistener to restart button to reload
+}
+//start Game
+function start(){
+  flip all deck cards for 2seconds
+  reset timer and moves and stars
+}*/
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -123,6 +159,8 @@ function shuffle(array) {
 
     return array;
 }
+
+//
 
 
 /*

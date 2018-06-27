@@ -1,9 +1,16 @@
 /*
  * Create a list that holds all of your cards
  */
- let time = 0;
+ //globals
+let moves = 0;
+clockOff =true;
+let time = 0;
+let clockId;
 const cards = document.querySelectorAll('.card');
 console.log(cards);
+
+//create list to hold clicked cards in global scope
+let toggledCards = [];
 
 //select deck of cards as target
 const deck = document.querySelector('.deck');
@@ -44,8 +51,7 @@ function toggleCard (clickTarget) {
   clickTarget.classList.toggle('open');
   clickTarget.classList.toggle('show');
 }
-//create list to hold clicked cards in global scope
-let toggledCards = [];
+
 //create funtion to push clicked cards to new array
 function addToggleCard(clickTarget){
   toggledCards.push(clickTarget);
@@ -87,7 +93,7 @@ function addToggleCard(clickTarget){
 
 //move counter
 
-let moves = 0;
+
 
 function addMove(){
   moves ++;
@@ -110,24 +116,33 @@ function removeStar(){
   starList[0].classList.remove('fa-star');
 }
 //clock
-//clock
-clockOff =true;
-;
+
 function startClock(){
 
   let clockId = setInterval(() =>{
-    time++
-    console.log('one second had passed');
+    time ++
+    const clock = document.querySelector('#clock');
+    const minutes = Math.floor(time / 60);
+    const seconds =time % 60;
+    if (seconds < 10) {
+      clock.innerHTML = minutes + ':0' + seconds;
+    } else{
+      clock.innerHTML = minutes +':' + seconds;
+    }
+    console.log( time + ' seconds have passed');
   }, 1000);
-  function displayTime(){
-    const clock = document.querySelector('.clock');
-    console.log(clock);
-    clock.innerHTML = time;
-  }
+
 }
+/*
+
+function displayTime(){
+  const clock = document.querySelector('#clock');
+  const minutes = Math.floor(time / 60);
+  const seconds =time % 60;
+  clock.innerHTML = time;
 
 
-
+}*/
 /*
 //restart Game
 function(){

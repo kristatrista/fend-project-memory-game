@@ -126,7 +126,9 @@ function removeStar(){
   starList[0].classList.remove('fa-star');
 }
 //clock
-
+function stopClock(){
+  clearInterval(startClock);
+}
 function startClock(){
   let clockId = setInterval(() =>{
     time ++
@@ -143,9 +145,7 @@ function startClock(){
 }
 
 
-function stopClock(){
-  clearInterval(clockId);
-}
+
 
 //modal
 
@@ -162,7 +162,7 @@ span.onclick = function() {
     }
 }*/
 
-document.querySelector(".replayButton").addEventListener('click',resetGame);
+document.querySelector(".replayButton").addEventListener('click',newGame);
 //document.location.reload()
 document.querySelector(".restart").addEventListener('click',resetGame);
 
@@ -188,6 +188,10 @@ function youWon(){
   modalTime.innerHTML= "Time = " + clockTime;
   movesStats.innerHTML= "Moves = " + moves;
 
+}
+//reload page and restart
+function newGame(){
+  document.location.reload(true);
 }
 
 //reset Game

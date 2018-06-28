@@ -21,6 +21,11 @@ let toggledCards = [];
 
 const deck = document.querySelector('.deck');
 
+//on pageload show all cards
+window.document.onload = setTimeout(function startGame(){
+  $(".card").toggleClass("open show");
+},3000);
+
 //add event listener to deck, log "", toggle open
 
 //when card is clicked game starts, clock starts

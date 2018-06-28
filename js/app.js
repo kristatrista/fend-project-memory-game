@@ -9,8 +9,8 @@ let time = 0;
 let clockId;
 const cards = document.querySelectorAll('.card');
 console.log(cards);
-let matched = 0;
-const totalPairs = 8;
+let matched = [];
+const totalPairs = [2];
 
 
 //create list to hold clicked cards in global scope
@@ -23,6 +23,7 @@ const deck = document.querySelector('.deck');
 
 //add event listener to deck, log "", toggle open
 
+//when card is clicked game starts, clock starts
 deck.addEventListener('click',event =>{
   const clickTarget = event.target;
   if (isClickValid(clickTarget)){
@@ -32,7 +33,7 @@ deck.addEventListener('click',event =>{
 
   }
 }
-
+//check for matches
   function isClickValid(clickTarget){
   return (clickTarget.classList.contains('card') &&
   !clickTarget.classList.contains('match')
@@ -48,6 +49,7 @@ if (toggledCards.length ===2 ){
   checkForMatch();
   addMove();
   checkScore();
+  checkPairs();
   console.log('2 cards');
 }
 
@@ -70,12 +72,13 @@ function addToggleCard(clickTarget){
 
 
 }
+
+
  //create a match funtion
 
  function checkForMatch(){
    if (toggledCards[0].firstElementChild.className === toggledCards[1].firstElementChild.className){
      console.log('Match');
-     console.log(matched.length +" matched");
      toggledCards[0].classList.toggle('match');
      toggledCards[1].classList.toggle('match');
      toggledCards = [];
@@ -139,6 +142,7 @@ function startClock(){
   }, 1000);
 }
 
+
 function stopClock(){
   clearInterval(clockId);
 }
@@ -152,17 +156,17 @@ span.onclick = function() {
 }
 
 // When the user clicks anywhere outside of the modal, close it/optional
-window.onclick = function(event) {
+/*window.onclick = function(event) {
     if (event.target === modal) {
         modal.style.display = "none";
     }
-}
+}*/
 
-document.querySelector(".replayButton").addEventListener('click',()=>{
-  console.log("replay");
-  toggleModal();
-});
+document.querySelector(".replayButton").addEventListener('click',resetGame);
+//document.location.reload()
+document.querySelector(".restart").addEventListener('click',resetGame);
 
+//toggle modal open and close
  function toggleModal(){
    modal.classList.toggle("hidden");
    console.log('hey restart me');
@@ -185,16 +189,44 @@ function youWon(){
   movesStats.innerHTML= "Moves = " + moves;
 
 }
-youWon();
 
 //reset Game
-//game over
-function gameOver(){
-  stopClock();
-  toggleModal();
+function resetGame(){
   youWon();
+  resetMoves();
+  resetClockAndTime();
+  toggleModal();
+}
+function resetClockAndTime(){
+
+  time = 0;
+  stopClock();
+  resetStars();
+  //displayTime();
+}
+function resetMoves(){
+  moves = 0;
+  document.querySelector('.moves').innerHTML = moves;
+}
+//fix reset stars
+function resetStars(){
+  stars = 3;
+  if (starList.length === 2){
+    starList[0].classList.add('fa-star');
+  }
+
+
 
 }
+//checkPairs
+function checkPairs(){
+  if(matched.length === totalPairs){
+    resetGame();
+  }else{
+      console.log(matched.length +" matched");
+  }
+}
+
 /*
 
 function displayTime(){

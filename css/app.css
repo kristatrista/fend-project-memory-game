@@ -115,7 +115,7 @@ h1 {
 }
 /*modal*/
 .modal {
-  display: ; /* Hidden by default */
+  display: block; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
@@ -127,9 +127,6 @@ h1 {
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 
 
-}
-.modal {
-  display: ;
 }
 
 .modalContent {

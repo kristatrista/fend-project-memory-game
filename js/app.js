@@ -9,7 +9,7 @@ let time = 0;
 let clockId;
 const cards = document.querySelectorAll('.card');
 console.log(cards);
-let matched = [];
+
 const totalPairs= 2;
 
 //create list to hold clicked cards in global scope
@@ -20,19 +20,13 @@ let toggledCards = [];
 
 const deck = document.querySelector('.deck');
 
-//check matched and pairs
-/*function winner(){
-  if(matched === totalPairs){
-    resetGame();
-    console.log('WINNER');
-  }
-}*/
+
 
 //on pageload show all cards
 window.document.onload =
 setTimeout(function startGame(){
   $(".card").toggleClass("open show");
-},4000);
+},2000);
 
 //add event listener to deck, log "", toggle open
 
@@ -58,11 +52,11 @@ deck.addEventListener('click',event =>{
     console.log('Im a card');
     toggleCard(clickTarget);
     addToggleCard(clickTarget);
+    //addMatchedPair();
 if (toggledCards.length ===2 ){
   checkForMatch();
   addMove();
   checkScore();
-  //winner();
   console.log('2 cards');
 }
 
@@ -80,24 +74,46 @@ function toggleCard (clickTarget) {
 
 function addToggleCard(clickTarget){
   toggledCards.push(clickTarget);
+  console.log('toggledCards');
   console.log(toggledCards);
 }
+let matched = 0;
+function addMatchedPair(){
+  if(toggledCards[0].firstElementChild.className === toggledCards[1].firstElementChild.className){
+    matched = matched + 1;
+    console.log(matched)
+
+  }
+}
+//check matched and pairs
+function winner(){
+  if(matched === 8){
+    resetGame();
+    const winner=document.querySelector('.winLose');
+    winner.innerHTML ="YOU WON!";
+    console.log('WINNER');
+  }
+}
+
 
 
  //create a match funtion
 
  function checkForMatch(){
    if (toggledCards[0].firstElementChild.className === toggledCards[1].firstElementChild.className){
+     addMatchedPair();
+     winner();
      console.log('Match');
-     matched= matched++;
      toggledCards[0].classList.toggle('match');
      toggledCards[1].classList.toggle('match');
      toggledCards = [];
+     /*addMatchedPair();
+     console.log('matched =' + matched);
      if (matched.length == totalPairs){
        console.log('winner');
-       resetGame();
+    //resetGame();
      }
-
+*/
 
    }else{
      setTimeout(()=> {

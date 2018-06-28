@@ -81,7 +81,7 @@ h1 {
     font-size: 33px;
 }
 .deck .card.nomatch {
-  background: red;
+  background: #aa7ecd;
 }
 
 /*

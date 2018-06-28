@@ -86,11 +86,19 @@ function addToggleCard(clickTarget){
 
    }else{
      setTimeout(()=> {
+       toggledCards[0].classList.toggle('nomatch');
+       toggledCards[1].classList.toggle('nomatch');
+   }, 0);
+
+     setTimeout(()=> {
+       toggledCards[0].classList.toggle('nomatch');
+       toggledCards[1].classList.toggle('nomatch');
        console.log('not a match');
        toggleCard(toggledCards[0]);
        toggleCard(toggledCards[1]);
+
        toggledCards = [];
-     }, 700);
+     }, 600);
    }
  }
  //shuffle the deck
@@ -115,19 +123,38 @@ function addMove(){
 //stars funciton
 
 function checkScore(){
-  if (moves === 2 || moves === 12 || moves === 16){
+  if (moves === 1 || moves === 3|| moves === 4){
     removeStar();
   }
 
 }
 
-starList = document.querySelectorAll('.fa-star');
+starList= document.querySelectorAll('.fa-star');
 function removeStar(){
-  $(".stars").empty(".stars[0]");
-}
+
+  //if(starList.length === 3){
+    //  starList[0].childNode.remove();
+  //}
+  //starList.parentElement.remove();
+  starList[0].classList.remove('fa-star');
+  console.log('star length' + starList.length);
+
+    }
+
+
 
 //
-
+function getStars(){
+  stars = document.querySelectorAll('.fa-star');
+  starCount = 0;
+  for (star of stars){
+    if (star.style.display !== 'none'){
+      starCount++;
+    }
+  }
+  console.log(starCount);
+  return starCount;
+}
 //
 //clock
 function stopClock(){
@@ -185,10 +212,10 @@ function youWon(){
   const starStats = document.querySelector(".modalStars");
   const movesStats = document.querySelector(".modalMoves");
 
-//  const stars = getStars();
+  const stars = getStars();
   //when all cards are matched pop up window with stats
 
-  starStats.innerHTML= "Stars = "  + starList.length;
+  starStats.innerHTML= "Stars = "  + stars;
   modalTime.innerHTML= "Time = " + clockTime;
   movesStats.innerHTML= "Moves = " + moves;
 

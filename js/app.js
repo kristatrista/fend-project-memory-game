@@ -115,7 +115,7 @@ function addMove(){
 //stars funciton
 
 function checkScore(){
-  if (moves === 8 || moves === 12 || moves === 16){
+  if (moves === 2 || moves === 12 || moves === 16){
     removeStar();
   }
 
@@ -123,8 +123,12 @@ function checkScore(){
 
 starList = document.querySelectorAll('.fa-star');
 function removeStar(){
-  starList[0].classList.remove('fa-star');
+  $(".stars").empty(".stars[0]");
 }
+
+//
+
+//
 //clock
 function stopClock(){
   clearInterval(startClock);

@@ -10,8 +10,7 @@ let clockId;
 const cards = document.querySelectorAll('.card');
 console.log(cards);
 let matched = [];
-const totalPairs = [2];
-
+const totalPairs= 2;
 
 //create list to hold clicked cards in global scope
 
@@ -21,10 +20,19 @@ let toggledCards = [];
 
 const deck = document.querySelector('.deck');
 
+//check matched and pairs
+/*function winner(){
+  if(matched === totalPairs){
+    resetGame();
+    console.log('WINNER');
+  }
+}*/
+
 //on pageload show all cards
-window.document.onload = setTimeout(function startGame(){
+window.document.onload =
+setTimeout(function startGame(){
   $(".card").toggleClass("open show");
-},3000);
+},4000);
 
 //add event listener to deck, log "", toggle open
 
@@ -54,7 +62,7 @@ if (toggledCards.length ===2 ){
   checkForMatch();
   addMove();
   checkScore();
-  checkPairs();
+  //winner();
   console.log('2 cards');
 }
 
@@ -73,9 +81,6 @@ function toggleCard (clickTarget) {
 function addToggleCard(clickTarget){
   toggledCards.push(clickTarget);
   console.log(toggledCards);
-
-
-
 }
 
 
@@ -84,10 +89,15 @@ function addToggleCard(clickTarget){
  function checkForMatch(){
    if (toggledCards[0].firstElementChild.className === toggledCards[1].firstElementChild.className){
      console.log('Match');
+     matched= matched++;
      toggledCards[0].classList.toggle('match');
      toggledCards[1].classList.toggle('match');
      toggledCards = [];
-     matched ++;
+     if (matched.length == totalPairs){
+       console.log('winner');
+       resetGame();
+     }
+
 
    }else{
      setTimeout(()=> {
@@ -147,8 +157,6 @@ function removeStar(){
     }
 
 
-
-//
 function getStars(){
   stars = document.querySelectorAll('.fa-star');
   starCount = 0;
@@ -160,13 +168,16 @@ function getStars(){
   console.log(starCount);
   return starCount;
 }
-//
+
 //clock
 function stopClock(){
-  clearInterval(startClock);
+  clearInterval(clockId);
+  seconds = -1;
+  minutes = 0;
 }
+
 function startClock(){
-  let clockId = setInterval(() =>{
+    clockId = setInterval(() =>{
     time ++
     const clock = document.querySelector('#clock');
     const minutes = Math.floor(time / 60);
@@ -176,7 +187,6 @@ function startClock(){
     } else{
       clock.innerHTML = minutes + ':' + seconds;
     }
-
   }, 1000);
 }
 
@@ -236,6 +246,7 @@ function resetGame(){
   resetMoves();
   resetClockAndTime();
   toggleModal();
+
 }
 function resetClockAndTime(){
 
@@ -258,14 +269,7 @@ function resetStars(){
 
 
 }
-//checkPairs
-function checkPairs(){
-  if(matched.length === totalPairs){
-    resetGame();
-  }else{
-      console.log(matched.length +" matched");
-  }
-}
+
 
 /*
 

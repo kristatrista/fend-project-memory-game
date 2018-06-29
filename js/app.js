@@ -1,6 +1,6 @@
-/*
- * Create a list that holds all of your cards
- */
+/*https://matthewcranford.com/memory-game-walkthrough-part-8-putting-it-all-together/
+used this walkthrough for pointers and some code
+*/
 
  //globals
 let moves = 0;

@@ -91,11 +91,8 @@ function winner(){
     resetGame();
     const winner=document.querySelector('.winLose');
     winner.innerHTML ="YOU WON!";
-    console.log('WINNER');
   }
 }
-
-
 
  //create a match funtion
 
@@ -103,18 +100,9 @@ function winner(){
    if (toggledCards[0].firstElementChild.className === toggledCards[1].firstElementChild.className){
      addMatchedPair();
      winner();
-     console.log('Match');
      toggledCards[0].classList.toggle('match');
      toggledCards[1].classList.toggle('match');
      toggledCards = [];
-     /*addMatchedPair();
-     console.log('matched =' + matched);
-     if (matched.length == totalPairs){
-       console.log('winner');
-    //resetGame();
-     }
-*/
-
    }else{
      setTimeout(()=> {
        toggledCards[0].classList.toggle('nomatch');
@@ -127,11 +115,11 @@ function winner(){
        console.log('not a match');
        toggleCard(toggledCards[0]);
        toggleCard(toggledCards[1]);
-
        toggledCards = [];
      }, 600);
    }
  }
+
  //shuffle the deck
 
  function shuffleTheDeck (){
@@ -154,21 +142,18 @@ function addMove(){
 //stars funciton
 
 function checkScore(){
-  if (moves === 1 || moves === 3|| moves === 4){
+  if (moves === 8 || moves === 12|| moves === 18){
     removeStar();
   }
 
 }
 
-starList= document.querySelectorAll('.fa-star');
+starList= document.querySelector('ul.stars');
 function removeStar(){
+  starList.removeChild(starList.lastElementChild);
+  console.log('star length ' + starList.length);
 
-  //if(starList.length === 3){
-    //  starList[0].childNode.remove();
-  //}
-  //starList.parentElement.remove();
-  starList[0].classList.remove('fa-star');
-  console.log('star length' + starList.length);
+
 
     }
 
@@ -217,8 +202,8 @@ span.onclick = function() {
     modal.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it/optional
-/*window.onclick = function(event) {
+/* When the user clicks anywhere outside of the modal, close it/optional
+window.onclick = function(event) {
     if (event.target === modal) {
         modal.style.display = "none";
     }
@@ -244,7 +229,7 @@ function youWon(){
   const movesStats = document.querySelector(".modalMoves");
 
   const stars = getStars();
-  //when all cards are matched pop up window with stats
+//when all cards are matched pop up window with stats
 
   starStats.innerHTML= "Stars = "  + stars;
   modalTime.innerHTML= "Time = " + clockTime;

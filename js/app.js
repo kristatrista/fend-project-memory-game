@@ -116,7 +116,7 @@ function winner(){
        toggleCard(toggledCards[0]);
        toggleCard(toggledCards[1]);
        toggledCards = [];
-     }, 300);
+     }, 400);
    }
  }
 
@@ -237,12 +237,13 @@ function youWon(){
 //reload page and restart
 function newGame(){
   document.location.reload(true);
+
 }
 
 //reset Game
 function resetGame(){
   youWon();
-  resetMoves();
+  //resetMoves();
   resetClockAndTime();
   toggleModal();
 

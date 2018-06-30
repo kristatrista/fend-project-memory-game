@@ -77,11 +77,11 @@ h1 {
 
 .deck .card.match {
     cursor: default;
-    background: #7cd6bb;
+    background: #52d3bf;
     font-size: 33px;
 }
 .deck .card.nomatch {
-  background: #7a3037;
+  background: #960a0a;
 }
 
 /*

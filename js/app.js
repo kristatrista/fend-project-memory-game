@@ -1,4 +1,4 @@
-/*https://matthewcranford.com/memory-game-walkthrough-part-8-putting-it-all-together/
+/*https://matthewcranford.com/memory-game-walkthrough-part-8-puttinggit c-it-all-together/
 used this walkthrough for pointers and some code
 */
 
@@ -196,11 +196,9 @@ function startClock(){
 
 //modal
 
-var modal = document.querySelector('.modal');
-var span = document.querySelector(".close");
-span.onclick = function() {
-    modal.style.display = "none";
-}
+let modal = document.querySelector('.modal');
+let span = document.querySelector(".close");
+document.querySelector(".close").addEventListener('click',toggleModal);
 
 /* When the user clicks anywhere outside of the modal, close it/optional
 window.onclick = function(event) {

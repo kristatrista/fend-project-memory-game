@@ -116,7 +116,7 @@ function winner(){
        toggleCard(toggledCards[0]);
        toggleCard(toggledCards[1]);
        toggledCards = [];
-     }, 600);
+     }, 300);
    }
  }
 
@@ -142,7 +142,7 @@ function addMove(){
 //stars funciton
 
 function checkScore(){
-  if (moves === 8 || moves === 12|| moves === 18){
+  if (moves === 10 || moves === 15|| moves === 20){
     removeStar();
   }
 
